@@ -7,6 +7,10 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
+Book.prototype.changeStatus = function() {
+    this.read = this.read ? false : true;
+}
+
 function addBook(title, author, pages, read) {
     const newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
@@ -35,24 +39,54 @@ function displayBook(book, index) {
     
     card.setAttribute('data-number', index);
 
-    const button = document.createElement('button');
-    button.classList.add('removeBtn');
-    button.addEventListener('click',(e) => {
-        const cardToRemove = e.target.parentNode;
+    const isRead = document.createElement('p');
+    isRead.classList.add('read-status');
+    isRead.textContent = myLibrary[index].read ? 'Read' : 'Not Read';
+
+    const readIcon = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    readIcon.classList.add('read-status-icon');
+    readIcon.setAttribute('viewBox', '0 0 38 38');
+    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    readIcon.appendChild(path);
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('removeBtn');
+    deleteBtn.textContent = 'Remove Book';
+
+    deleteBtn.addEventListener('click',(e) => {
+        const cardToRemove = e.target.parentNode.parentNode;
         cardToRemove.remove();
 
-        console.log(card.getAttribute('data-number'));
         const indexToRemove = cardToRemove.getAttribute('data-number');
-        myLibrary.splice(card.getAttribute('data-number'), 1);
+        myLibrary.splice(indexToRemove, 1);
         updateNumbers();
-        console.log(myLibrary);
     });
+
+    const changeStatusBtn = document.createElement('button');
+    changeStatusBtn.classList.add('changeBtn');
+    changeStatusBtn.textContent = 'Change Status';
+    changeStatusBtn.addEventListener('click', (e) => {
+        const cardToChange = e.target.parentNode.parentNode;
+        const indexToChange = cardToChange.getAttribute('data-number');
+
+        myLibrary[indexToChange].changeStatus();
+        cardToChange.setAttribute('data-read', myLibrary[indexToChange].read);
+        const textToChange = cardToChange.querySelector('.read-status');
+        textToChange.textContent = myLibrary[indexToChange].read ? 'Read' : 'Not Read';
+    })
+
+    const bookButtons = document.createElement('div');
+    bookButtons.classList.add('book-buttons');
+    bookButtons.appendChild(deleteBtn);
+    bookButtons.appendChild(changeStatusBtn);
 
     card.appendChild(bookTitle);
     card.appendChild(bookAuthor);
     card.appendChild(bookPages);
     card.setAttribute('data-read', book.read);
-    card.appendChild(button);
+    card.appendChild(isRead);
+    card.appendChild(bookButtons);
+    card.appendChild(readIcon);
 
     container.appendChild(fragment);
 }
@@ -68,9 +102,11 @@ addBook('Wuthering Heights', 'Emily Brontë', 400, false);
 addBook('Blah blah', 'Kev', 21, true);
 addBook('Blah blah 2', 'Kev',400, true);
 
+const newBookForm = document.querySelector('.newBookForm');
+
 const newBookButton = document.querySelector('.newBook');
 newBookButton.addEventListener('click', () => {
-    document.querySelector('.newBookForm').classList.toggle('active');
+    newBookForm.classList.toggle('active');
 });
 
 const addBookButton = document.querySelector('.addBtn');
@@ -80,5 +116,10 @@ addBookButton.addEventListener('click', (e) => {
     const author = document.querySelector('#author').value;
     const pages = document.querySelector('#pages').value;
     const read = document.querySelector('#read').value === 'on' ? true : false;
-    addBook(title, author, pages, read);
+
+    if(newBookForm.checkValidity()) {
+        addBook(title, author, pages, read);
+    } else {
+        newBookForm.reportValidity();
+    }
 });
