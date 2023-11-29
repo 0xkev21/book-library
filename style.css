@@ -54,7 +54,7 @@ body.dark {
     --background-color: #191919;
     --overlay-color: rgba(248,248,248,0.2);
     --text-color: #F8F8F8;
-
+    transition: 500ms;
 }
 
 body {
@@ -63,6 +63,7 @@ body {
     padding: 20px 40px;
     background-color: var(--background-color);
     color: var(--text-color);
+    transition: 500ms;
 }
 
 svg {
@@ -111,6 +112,7 @@ svg {
     top: 5px;
     left: 5px;
     background-color: var(--background-color);
+    transition: 500ms;
 }
 
 .circle > svg {
@@ -263,6 +265,8 @@ h1 {
     font-family: 'Erode';
     border-radius: 5px;
     border: none;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 form {
@@ -370,4 +374,23 @@ h2 {
     right: 175px;
     transform: rotate(225deg);
     transition: 400ms;
+}
+
+.mode.dark > .rectangle > .circle {
+    left: 55px;
+    transition: 500ms;
+}
+
+.circle svg {
+    transform: rotateY(180deg);
+    transition: 500ms;
+}
+
+.mode.dark .circle svg {
+    transform: rotateY(0deg);
+    transition: 500ms;
+}
+
+.mode.dark .circle svg path {
+    d: path("M37 25.5695C34.3757 27.3304 31.1847 28.363 27.7433 28.363C18.7927 28.363 11.5368 21.3788 11.5368 12.7634C11.5368 7.48738 14.2578 2.82313 18.423 0C8.177 0.40617 0 8.52994 0 18.4921C0 28.7137 8.60867 37 19.228 37C27.243 37 34.1127 32.2796 37 25.5695Z");
 }

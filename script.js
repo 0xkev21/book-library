@@ -132,3 +132,9 @@ addBookButton.addEventListener('click', (e) => {
         newBookForm.reportValidity();
     }
 });
+
+const darkButton = document.querySelector('.mode');
+darkButton.addEventListener('click', (e) => {
+    document.body.classList.toggle('dark');
+    darkButton.classList.toggle('dark');
+})
