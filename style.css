@@ -72,9 +72,11 @@ svg {
 }
 .mode-icon {
     fill: var(--primary-color);
+    transition: 500ms;
 }
 .add-book-icon {
     fill: var(--background-color);
+    transition: 500ms;
 }
 
 .top {
@@ -103,6 +105,7 @@ svg {
     border-radius: 25px;
     background-color: var(--primary-color);
     position: relative;
+    transition: 500ms;
 }
 
 .circle {
@@ -138,6 +141,7 @@ svg {
     font-family: 'Erode';
     border: none;
     background-color: var(--primary-color);
+    transition: 500ms;
 }
 
 .add-icon-wrapper {
@@ -151,7 +155,7 @@ svg {
     flex-shrink: 0;
     z-index: 3;
     position: relative;
-    transition: 400ms;
+    transition: 500ms;
 }
 
 .add-icon-wrapper > svg {
@@ -182,6 +186,7 @@ h1 {
     border-radius: 20px;
     position: relative;
     overflow: hidden;
+    transition: 500ms;
 }
 
 .book-details {
@@ -217,7 +222,8 @@ h1 {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 1;
-    text-align: center
+    text-align: center;
+    transition: 500ms;
 }
 
 .read-status::before {
@@ -231,6 +237,7 @@ h1 {
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: -1;
+    transition: 500ms;
 }
 
 .read-status-icon {
@@ -245,19 +252,20 @@ h1 {
 
 .card .read-status-icon path {
     transform-origin: center;
-    transition: 400ms;
 }
 
 .card[data-read="true"] .read-status-icon path {
     d: path("M11.387 19.8609C12.5785 21.1826 14.6519 21.1826 15.8434 19.8609L32.4176 1.4757C33.6104 0.152579 35.6867 0.154252 36.8773 1.47929L37.1953 1.83315C38.2213 2.97491 38.2199 4.70693 37.1921 5.84704L15.8434 29.5283C14.6519 30.85 12.5785 30.85 11.387 29.5283L0.807973 17.7934C-0.21984 16.6533 -0.221216 14.9212 0.804783 13.7795L1.12274 13.4256C2.31341 12.1006 4.38961 12.099 5.58238 13.4221L11.387 19.8609Z");
     fill: var(--background-color);
     transform: rotateY(0deg);
+    transition: 500ms;
 }
 
 .card[data-read="false"] .read-status-icon path {
     d: path("M16.5 5.00893C10.1537 5.00893 5.00893 10.1537 5.00893 16.5C5.00893 22.8463 10.1537 27.9911 16.5 27.9911C22.8463 27.9911 27.9911 22.8463 27.9911 16.5C27.9911 10.1537 22.8463 5.00893 16.5 5.00893ZM0 16.5C0 7.3873 7.3873 0 16.5 0C25.6127 0 33 7.3873 33 16.5C33 25.6127 25.6127 33 16.5 33C7.3873 33 0 25.6127 0 16.5Z");
     fill: var(--background-color);
     transform: rotateY(180deg);
+    transition: 500ms;
 }
 
 .book-buttons {
@@ -276,6 +284,7 @@ h1 {
     border: none;
     background-color: var(--background-color);
     color: var(--text-color);
+    transition: 500ms;
 }
 
 form {
@@ -288,6 +297,7 @@ form {
     border-radius: 20px;
     position: relative;
     overflow: hidden;
+    transition: 500ms;
 }
 
 .overlay {
@@ -304,6 +314,7 @@ form {
     backdrop-filter: blur(10px);
     z-index: 2;
     place-items: center;
+    transition: 500ms;
 }
 
 .overlay:has(form.active) {
@@ -327,6 +338,7 @@ form {
     caret-color: var(--text-color);
     font-family: 'Erode';
     font-size: 1rem;
+    transition: 500ms;
 }
 
 .newBookForm input::placeholder {
@@ -341,8 +353,8 @@ div.bookRead {
 input[type='checkbox'] {
     width: 30px;
     height: 30px;
-    -ms-accent-color: var(--primary-color);
     accent-color: var(--primary-color);
+    transition: 500ms;
 }
 
 .addBtn {
@@ -359,6 +371,7 @@ input[type='checkbox'] {
     border: none;
     font-size: 1.4rem;
     color: var(--background-color);
+    transition: 500ms;
 }
 
 h2 {
@@ -376,6 +389,7 @@ h2 {
     height: 5px;
     display: block;
     background-color: var(--primary-color);
+    transition: 500ms;
 }
 
 .newBook.active > .add-icon-wrapper {
