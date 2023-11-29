@@ -81,10 +81,11 @@ svg {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .main-buttons {
+    flex-shrink: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -125,10 +126,11 @@ svg {
 
 .newBook {
     height: 51px;
+    flex-shrink: 0;
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-size: 1.728rem;
+    font-size: clamp(1.2rem, 5vw, 1.72rem);
     font-weight: bold;
     border-radius: 25px;
     padding-right: 10px;
@@ -160,7 +162,7 @@ svg {
 
 h1 {
     font-family: 'Melodrama';
-    font-size: 60px;
+    font-size: clamp(50px, 10vw, 60px);
 }
 
 .container {
@@ -222,7 +224,7 @@ h1 {
     content: "";
     display: block;
     width: 100vw;
-    height: 5px;
+    height: 3px;
     background-color: var(--background-color);
     position: absolute;
     top: 50%;
@@ -241,14 +243,21 @@ h1 {
     transition: all 1s;
 }
 
+.card .read-status-icon path {
+    transform-origin: center;
+    transition: 400ms;
+}
+
 .card[data-read="true"] .read-status-icon path {
     d: path("M11.387 19.8609C12.5785 21.1826 14.6519 21.1826 15.8434 19.8609L32.4176 1.4757C33.6104 0.152579 35.6867 0.154252 36.8773 1.47929L37.1953 1.83315C38.2213 2.97491 38.2199 4.70693 37.1921 5.84704L15.8434 29.5283C14.6519 30.85 12.5785 30.85 11.387 29.5283L0.807973 17.7934C-0.21984 16.6533 -0.221216 14.9212 0.804783 13.7795L1.12274 13.4256C2.31341 12.1006 4.38961 12.099 5.58238 13.4221L11.387 19.8609Z");
     fill: var(--background-color);
+    transform: rotateY(0deg);
 }
 
 .card[data-read="false"] .read-status-icon path {
     d: path("M16.5 5.00893C10.1537 5.00893 5.00893 10.1537 5.00893 16.5C5.00893 22.8463 10.1537 27.9911 16.5 27.9911C22.8463 27.9911 27.9911 22.8463 27.9911 16.5C27.9911 10.1537 22.8463 5.00893 16.5 5.00893ZM0 16.5C0 7.3873 7.3873 0 16.5 0C25.6127 0 33 7.3873 33 16.5C33 25.6127 25.6127 33 16.5 33C7.3873 33 0 25.6127 0 16.5Z");
     fill: var(--background-color);
+    transform: rotateY(180deg);
 }
 
 .book-buttons {
@@ -289,10 +298,10 @@ form {
     background-color: var(--overlay-color);
     top: 0;
     left: 0;
-    -webkit-backdrop-filter: blur(30px);
-    -moz-backdrop-filter: blur(30px);
-    -ms-backdrop-filter: blur(30px);
-    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(10px);
+    -moz-backdrop-filter: blur(10px);
+    -ms-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     z-index: 2;
     place-items: center;
 }
@@ -361,9 +370,9 @@ h2 {
 
 .divider {
     position: relative;
-    left: -50vw;
+    left: -300px;
     content: '';
-    width: 100vw;
+    width: 1000px;
     height: 5px;
     display: block;
     background-color: var(--primary-color);
@@ -371,7 +380,7 @@ h2 {
 
 .newBook.active > .add-icon-wrapper {
     position: fixed;
-    right: 175px;
+    right: 168px;
     transform: rotate(225deg);
     transition: 400ms;
 }
@@ -382,15 +391,27 @@ h2 {
 }
 
 .circle svg {
-    transform: rotateY(180deg);
-    transition: 500ms;
+    transform: rotateY(-180deg);
+    transition: 1s;
 }
 
 .mode.dark .circle svg {
     transform: rotateY(0deg);
-    transition: 500ms;
+    transition: 1s;
 }
 
 .mode.dark .circle svg path {
     d: path("M37 25.5695C34.3757 27.3304 31.1847 28.363 27.7433 28.363C18.7927 28.363 11.5368 21.3788 11.5368 12.7634C11.5368 7.48738 14.2578 2.82313 18.423 0C8.177 0.40617 0 8.52994 0 18.4921C0 28.7137 8.60867 37 19.228 37C27.243 37 34.1127 32.2796 37 25.5695Z");
+}
+
+@media only screen and (max-width: 650px) {
+    .main-buttons {
+        flex-direction: column;
+        align-items: flex-end;
+    }
+    .newBook.active > .add-icon-wrapper {
+        position: fixed;
+        right: 20px;
+        top: 30px;
+    }
 }

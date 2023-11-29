@@ -103,10 +103,6 @@ function updateNumbers() {
     })
 };
 
-addBook('Wuthering Heights', 'Emily Brontë', 400, false);
-addBook('Blah blah', 'Kev', 21, true);
-addBook('Blah blah 2', 'Kev',400, true);
-
 const newBookForm = document.querySelector('.newBookForm');
 
 const newBookButton = document.querySelector('.newBook');
@@ -138,3 +134,5 @@ darkButton.addEventListener('click', (e) => {
     document.body.classList.toggle('dark');
     darkButton.classList.toggle('dark');
 })
+
+addBook('Wuthering Heights', 'Emily Brontë', 400, false);
