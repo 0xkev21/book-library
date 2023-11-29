@@ -57,8 +57,9 @@ body.dark {
 body {
     font-family: 'Erode';
     font-size: 1rem;
-    padding: 20px 30px;;
-    /* background-color: gray; */
+    padding: 20px 40px;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 svg {
@@ -117,7 +118,7 @@ svg {
     left: 4px;
 }
 
-.add-book {
+.newBook {
     height: 51px;
     display: flex;
     flex-direction: row;
@@ -128,6 +129,8 @@ svg {
     border-radius: 25px;
     padding-right: 10px;
     color: var(--background-color);
+    font-family: 'Erode';
+    border: none;
 }
 
 .add-icon-wrapper {
@@ -135,8 +138,10 @@ svg {
     height: 51px;
     background-color: var(--primary-color);
     border-radius: 25px;
-    display: grid;
-    place-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
 }
 
 .add-icon-wrapper > svg {
@@ -150,7 +155,109 @@ h1 {
     font-size: 60px;
 }
 
+.container {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(273px,1fr));
+    gap: 30px;
+}
 
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 70px;
+    padding: 10px;
+    background-color: var(--primary-color);
+    border-radius: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.book-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.bookTitle {
+    font-size: 1.728rem;
+}
+
+.bookAuthor {
+    font-size: 1.728rem;
+    font-style: italic;
+}
+
+.bookPages {
+    font-size: 1.2rem;
+}
+
+.read-status {
+    font-size: 1.05rem;
+    display: block;
+    width: 80px;
+    background-color: var(--background-color);
+    border-radius: 50px;
+    padding: 5px;
+    position: absolute;
+    top: 67%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    text-align: center
+}
+
+.read-status::before {
+    content: "";
+    display: block;
+    width: 1000px;
+    height: 5px;
+    background-color: var(--background-color);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+}
+
+.read-status-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+
+.read-status-icon path {
+    transition: all 1s;
+}
+
+.card[data-read="true"] .read-status-icon path {
+    d: path("M11.387 19.8609C12.5785 21.1826 14.6519 21.1826 15.8434 19.8609L32.4176 1.4757C33.6104 0.152579 35.6867 0.154252 36.8773 1.47929L37.1953 1.83315C38.2213 2.97491 38.2199 4.70693 37.1921 5.84704L15.8434 29.5283C14.6519 30.85 12.5785 30.85 11.387 29.5283L0.807973 17.7934C-0.21984 16.6533 -0.221216 14.9212 0.804783 13.7795L1.12274 13.4256C2.31341 12.1006 4.38961 12.099 5.58238 13.4221L11.387 19.8609Z");
+    fill: var(--background-color);
+}
+
+.card[data-read="false"] .read-status-icon path {
+    d: path("M16.5 5.00893C10.1537 5.00893 5.00893 10.1537 5.00893 16.5C5.00893 22.8463 10.1537 27.9911 16.5 27.9911C22.8463 27.9911 27.9911 22.8463 27.9911 16.5C27.9911 10.1537 22.8463 5.00893 16.5 5.00893ZM0 16.5C0 7.3873 7.3873 0 16.5 0C25.6127 0 33 7.3873 33 16.5C33 25.6127 25.6127 33 16.5 33C7.3873 33 0 25.6127 0 16.5Z");
+    fill: var(--background-color);
+}
+
+.book-buttons {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.book-buttons button {
+    font-size: 1.440rem;
+    padding: 10px;
+    width: 100px;
+    text-align: center;
+    font-family: 'Erode';
+    border-radius: 5px;
+    border: none;
+}
 
 form {
     display: none;

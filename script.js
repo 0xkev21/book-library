@@ -51,7 +51,7 @@ function displayBook(book, index) {
 
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('removeBtn');
-    deleteBtn.textContent = 'Remove Book';
+    deleteBtn.textContent = 'Remove';
 
     deleteBtn.addEventListener('click',(e) => {
         const cardToRemove = e.target.parentNode.parentNode;
@@ -64,7 +64,7 @@ function displayBook(book, index) {
 
     const changeStatusBtn = document.createElement('button');
     changeStatusBtn.classList.add('changeBtn');
-    changeStatusBtn.textContent = 'Change Status';
+    changeStatusBtn.textContent = 'Status';
     changeStatusBtn.addEventListener('click', (e) => {
         const cardToChange = e.target.parentNode.parentNode;
         const indexToChange = cardToChange.getAttribute('data-number');
@@ -80,9 +80,14 @@ function displayBook(book, index) {
     bookButtons.appendChild(deleteBtn);
     bookButtons.appendChild(changeStatusBtn);
 
-    card.appendChild(bookTitle);
-    card.appendChild(bookAuthor);
-    card.appendChild(bookPages);
+    const bookDetails = document.createElement('div');
+    bookDetails.classList.add('book-details');
+
+    bookDetails.appendChild(bookTitle);
+    bookDetails.appendChild(bookAuthor);
+    bookDetails.appendChild(bookPages);
+    
+    card.appendChild(bookDetails);
     card.setAttribute('data-read', book.read);
     card.appendChild(isRead);
     card.appendChild(bookButtons);
