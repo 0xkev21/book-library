@@ -219,7 +219,7 @@ h1 {
 .read-status::before {
     content: "";
     display: block;
-    width: 1000px;
+    width: 100vw;
     height: 5px;
     background-color: var(--background-color);
     position: absolute;
@@ -273,6 +273,8 @@ form {
     width: 400px;
     gap: 20px;
     border-radius: 20px;
+    position: relative;
+    overflow: hidden;
 }
 
 .overlay {
@@ -334,6 +336,8 @@ input[type='checkbox'] {
     display: block;
     text-align: center;
     align-self: center;
+    width: 150px;
+    height: 60px;
     padding: 10px 20px;
     border-radius: 10px;
     background-color: var(--primary-color);
@@ -342,6 +346,23 @@ input[type='checkbox'] {
     border: none;
     font-size: 1.4rem;
     color: var(--background-color);
+}
+
+h2 {
+    align-self: center;
+    font-family: 'Melodrama';
+    font-weight: normal;
+    font-size: 2rem;
+}
+
+.divider {
+    position: relative;
+    left: -50vw;
+    content: '';
+    width: 100vw;
+    height: 5px;
+    display: block;
+    background-color: var(--primary-color);
 }
 
 .newBook.active > .add-icon-wrapper {
