@@ -37,19 +37,19 @@
         <form class="newBookForm">
             <div class="bookTitle">
                 <label for="title">Title : </label>
-                <input type="text" name="title" id="title" required>
+                <input type="text" name="title" id="title" placeholder="Title of The Book" required>
             </div>
             <div class="bookAuthor">
                 <label for="author">Author : </label>
-                <input type="text" name="author" id="author" required>
+                <input type="text" name="author" id="author" placeholder="Author Name" required>
             </div>
             <div class="bookPages">
-                <label for="pages">No. of Pages : </label>
-                <input type="number" name="pages" id="pages" required min="1">
+                <label for="pages">Pages : </label>
+                <input type="number" name="pages" id="pages" placeholder="Number of Pages" required min="1">
             </div>
             <div class="bookRead">
-                <input type="checkbox" name="read" id="read">
                 <label for="read">Have you read it ?</label>
+                <input type="checkbox" name="read" id="read">
             </div>
             <button type="submit" class="addBtn">Add Book</button>
         </form>
