@@ -136,7 +136,6 @@ svg {
     flex-direction: row;
     align-items: center;
     font-size: clamp(1.1rem, 5vw, 1.72rem);
-    font-weight: bold;
     border-radius: 25px;
     padding-right: 10px;
     color: var(--background-color);
@@ -168,7 +167,8 @@ svg {
 
 h1 {
     font-family: 'Melodrama';
-    font-size: clamp(40px, 10vw, 60px);
+    font-size: clamp(36px, 10vw, 60px);
+    font-weight: normal;
 }
 
 .container {
@@ -293,8 +293,8 @@ form {
     display: flex;
     flex-direction: column;
     background-color: var(--background-color);
-    padding: 30px;
-    width: min(400px, 100%);
+    padding: min(30px, 3%);
+    width: min(500px, 90%);
     gap: 20px;
     border-radius: 20px;
     position: relative;
