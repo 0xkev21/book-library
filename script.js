@@ -104,11 +104,11 @@ function updateNumbers() {
 };
 
 const newBookForm = document.querySelector('.newBookForm');
-
+const overlay = document.querySelector('.overlay');
 const newBookButton = document.querySelector('.newBook');
 newBookButton.addEventListener('click', () => {
     newBookForm.reset();
-    newBookForm.classList.toggle('active');
+    overlay.classList.toggle('active');
     newBookButton.classList.toggle('active');
 });
 
@@ -122,7 +122,7 @@ addBookButton.addEventListener('click', (e) => {
 
     if(newBookForm.checkValidity()) {
         addBook(title, author, pages, read);
-        newBookForm.classList.toggle('active');
+        overlay.classList.toggle('active');
         newBookButton.classList.toggle('active');
     } else {
         newBookForm.reportValidity();

@@ -47,6 +47,7 @@
     --background-color: #F8F8F8;
     --overlay-color: rgba(25,25,25,0.2);
     --text-color: #191919;
+    --hover-accent: #c19b70;
 }
 
 body.dark {
@@ -54,6 +55,7 @@ body.dark {
     --background-color: #191919;
     --overlay-color: rgba(248,248,248,0.2);
     --text-color: #F8F8F8;
+    --hover-accent: #664d2d;
     transition: 500ms;
 }
 
@@ -133,7 +135,7 @@ svg {
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-size: clamp(1.2rem, 5vw, 1.72rem);
+    font-size: clamp(1.1rem, 5vw, 1.72rem);
     font-weight: bold;
     border-radius: 25px;
     padding-right: 10px;
@@ -166,7 +168,7 @@ svg {
 
 h1 {
     font-family: 'Melodrama';
-    font-size: clamp(50px, 10vw, 60px);
+    font-size: clamp(40px, 10vw, 60px);
 }
 
 .container {
@@ -292,7 +294,7 @@ form {
     flex-direction: column;
     background-color: var(--background-color);
     padding: 30px;
-    width: 400px;
+    width: min(400px, 100%);
     gap: 20px;
     border-radius: 20px;
     position: relative;
@@ -308,16 +310,18 @@ form {
     background-color: var(--overlay-color);
     top: 0;
     left: 0;
-    -webkit-backdrop-filter: blur(10px);
-    -moz-backdrop-filter: blur(10px);
-    -ms-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
     z-index: 2;
     place-items: center;
     transition: 500ms;
 }
 
-.overlay:has(form.active) {
+@supports(backdrop-filter: blur(10px)) {
+    .overlay {
+        backdrop-filter: blur(10px);
+    }
+}
+
+.overlay.active {
     display: grid;
 }
 
@@ -423,9 +427,13 @@ h2 {
         flex-direction: column;
         align-items: flex-end;
     }
-    .newBook.active > .add-icon-wrapper {
+    .newBook.active >  .add-icon-wrapper {
         position: fixed;
         right: 20px;
         top: 30px;
     }
+}
+
+input[type="checkbox"]:hover, input[type="checkbox"]:focus {
+    accent-color: var(--hover-accent);
 }
