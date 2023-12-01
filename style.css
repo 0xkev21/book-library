@@ -48,6 +48,7 @@
     --overlay-color: rgba(25,25,25,0.2);
     --text-color: #191919;
     --hover-accent: #c19b70;
+    --hover-state-color: #F2AC5C;
 }
 
 body.dark {
@@ -56,6 +57,7 @@ body.dark {
     --overlay-color: rgba(248,248,248,0.2);
     --text-color: #F8F8F8;
     --hover-accent: #664d2d;
+    --hover-state-color: #422808;
     transition: 500ms;
 }
 
@@ -99,6 +101,11 @@ svg {
 .mode {
     width: 100px;
     height: 51px;
+    cursor: pointer;
+}
+
+.mode:hover {
+    filter: saturate(2);
 }
 
 .rectangle {
@@ -143,6 +150,11 @@ svg {
     border: none;
     background-color: var(--primary-color);
     transition: 500ms;
+    cursor: pointer;
+}
+
+.newBook:hover , .newBook:hover * {
+    background-color: var(--hover-state-color);
 }
 
 .add-icon-wrapper {
@@ -287,6 +299,11 @@ h1 {
     background-color: var(--background-color);
     color: var(--text-color);
     transition: 500ms;
+    cursor: pointer;
+}
+
+.book-buttons button:hover {
+    background-color: rgb(158, 158, 158);
 }
 
 form {
@@ -349,7 +366,7 @@ input::placeholder {
     color: var(--text-color);
     caret-color: var(--text-color);
     font-family: 'Erode';
-    font-size: 1rem;
+    font-size: 1.5rem;
     transition: 500ms;
 }
 
@@ -384,6 +401,11 @@ input[type='checkbox'] {
     font-size: 1.4rem;
     color: var(--background-color);
     transition: 500ms;
+    cursor: pointer;
+}
+
+.addBtn:hover {
+    filter: saturate(2);
 }
 
 h2 {
@@ -406,7 +428,7 @@ h2 {
 
 .newBook.active > .add-icon-wrapper {
     position: fixed;
-    right: 168px;
+    right: 158px;
     transform: rotate(225deg);
     transition: 400ms;
 }
