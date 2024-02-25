@@ -111,6 +111,7 @@ newBookButton.addEventListener('click', () => {
     newBookForm.reset();
     overlay.classList.toggle('active');
     newBookButton.classList.toggle('active');
+    newBookForm.querySelector('#title').focus();
 });
 
 const addBookButton = document.querySelector('.addBtn');
