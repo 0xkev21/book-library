@@ -1,5 +1,16 @@
-const myLibrary = [];
+const container = document.querySelector('.container');
+let myLibrary = [];
 
+if(!localStorage.getItem('mode')) {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        darkButton.classList.add('dark');
+        document.body.classList.add('dark');
+        
+    } else {
+        darkButton.classList.remove('dark');
+        document.body.classList.remove('dark');
+    }
+}
 class Book {
     constructor(title, author, pages, read) {
         this.title = title;
@@ -12,13 +23,14 @@ class Book {
     }
 }
 
+getData();
+
 function addBook(title, author, pages, read) {
     const newBook = new Book(title, author, pages, read);
     myLibrary.push(newBook);
     displayBook(newBook, myLibrary.length - 1);
+    updateData();
 }
-
-const container = document.querySelector('.container');
 
 function displayBook(book, index) {
     const fragment = document.createDocumentFragment();
@@ -61,6 +73,7 @@ function displayBook(book, index) {
         const indexToRemove = cardToRemove.getAttribute('data-number');
         myLibrary.splice(indexToRemove, 1);
         updateNumbers();
+        updateData();
     });
 
     const changeStatusBtn = document.createElement('button');
@@ -74,6 +87,7 @@ function displayBook(book, index) {
         cardToChange.setAttribute('data-read', myLibrary[indexToChange].read);
         const textToChange = cardToChange.querySelector('.read-status');
         textToChange.textContent = myLibrary[indexToChange].read ? 'Read' : 'Not Read';
+        updateData();
     })
 
     const bookButtons = document.createElement('div');
@@ -131,10 +145,46 @@ addBookButton.addEventListener('click', (e) => {
     }
 });
 
+function updateData() {
+    const myLibString = JSON.stringify(myLibrary);
+    localStorage.setItem("myLibrary", myLibString);
+    console.log("test");
+}
+
+function getData() {
+    myLibrary = JSON.parse(localStorage.getItem("myLibrary")) || [];
+    myLibrary.forEach(obj => {
+        Object.setPrototypeOf(obj, Book.prototype);
+    })
+    // myLibrary.forEach(obj => {
+    //     const book = new Book(obj.title, obj.author, obj.pages, obj.read);
+    //     myLibrary.push(book);
+    // });
+    if(myLibrary.length > 0) {
+        myLibrary.forEach((book ,index) => {
+            displayBook(book, index);
+        })
+    }
+}
+
+if(myLibrary.length === 0) {
+    addBook('The Great Gatsby', 'F. Scott Fitzgerald', 180, true);
+    addBook('To Kill a Mockingbird', 'Harper Lee', 320, false);
+    addBook('1984', 'George Orwell', 250, true);
+    addBook('The Catcher in the Rye', 'J.D. Salinger', 200, false);
+}
+
 const darkButton = document.querySelector('.mode');
 darkButton.addEventListener('click', (e) => {
     document.body.classList.toggle('dark');
     darkButton.classList.toggle('dark');
+    localStorage.setItem('mode', [...darkButton.classList].includes('dark') ? 'dark' : 'light');
 })
 
-addBook('Wuthering Heights', 'Emily Brontë', 400, false);
+if(localStorage.getItem('mode') === 'dark') {
+    darkButton.classList.add('dark');
+    document.body.classList.add('dark');
+} else {
+    darkButton.classList.remove('dark');
+    document.body.classList.remove('dark');
+}
