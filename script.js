@@ -1,4 +1,5 @@
 const container = document.querySelector('.container');
+const darkButton = document.querySelector('.mode');
 let myLibrary = [];
 
 if(!localStorage.getItem('mode')) {
@@ -174,7 +175,6 @@ if(myLibrary.length === 0) {
     addBook('The Catcher in the Rye', 'J.D. Salinger', 200, false);
 }
 
-const darkButton = document.querySelector('.mode');
 darkButton.addEventListener('click', (e) => {
     document.body.classList.toggle('dark');
     darkButton.classList.toggle('dark');
