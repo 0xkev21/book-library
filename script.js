@@ -2,16 +2,6 @@ const container = document.querySelector('.container');
 const darkButton = document.querySelector('.mode');
 let myLibrary = [];
 
-if(!localStorage.getItem('mode')) {
-    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        darkButton.classList.add('dark');
-        document.body.classList.add('dark');
-        
-    } else {
-        darkButton.classList.remove('dark');
-        document.body.classList.remove('dark');
-    }
-}
 class Book {
     constructor(title, author, pages, read) {
         this.title = title;
@@ -149,7 +139,6 @@ addBookButton.addEventListener('click', (e) => {
 function updateData() {
     const myLibString = JSON.stringify(myLibrary);
     localStorage.setItem("myLibrary", myLibString);
-    console.log("test");
 }
 
 function getData() {
@@ -157,10 +146,6 @@ function getData() {
     myLibrary.forEach(obj => {
         Object.setPrototypeOf(obj, Book.prototype);
     })
-    // myLibrary.forEach(obj => {
-    //     const book = new Book(obj.title, obj.author, obj.pages, obj.read);
-    //     myLibrary.push(book);
-    // });
     if(myLibrary.length > 0) {
         myLibrary.forEach((book ,index) => {
             displayBook(book, index);
@@ -187,4 +172,15 @@ if(localStorage.getItem('mode') === 'dark') {
 } else {
     darkButton.classList.remove('dark');
     document.body.classList.remove('dark');
+}
+
+if(!localStorage.getItem('mode')) {
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        darkButton.classList.add('dark');
+        document.body.classList.add('dark');
+        
+    } else {
+        darkButton.classList.remove('dark');
+        document.body.classList.remove('dark');
+    }
 }
