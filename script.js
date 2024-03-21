@@ -1,6 +1,8 @@
 const container = document.querySelector('.container');
 const darkButton = document.querySelector('.mode');
 let myLibrary = [];
+const errorEls = document.querySelectorAll('.error');
+const inputs = document.querySelectorAll('.newBookForm input') 
 
 class Book {
     constructor(title, author, pages, read) {
@@ -117,24 +119,67 @@ newBookButton.addEventListener('click', () => {
     overlay.classList.toggle('active');
     newBookButton.classList.toggle('active');
     newBookForm.querySelector('#title').focus();
+    resetErrors();
 });
 
 const addBookButton = document.querySelector('.addBtn');
 addBookButton.addEventListener('click', (e) => {
     e.preventDefault();
-    const title = document.querySelector('#title').value;
-    const author = document.querySelector('#author').value;
-    const pages = document.querySelector('#pages').value;
-    const read = document.querySelector('#read').value === 'on' ? true : false;
+    const title = document.querySelector('#title');
+    const author = document.querySelector('#author');
+    const pages = document.querySelector('#pages');
+    const read = document.querySelector('#read');
+    const isRead = read === 'on' ? true : false;
 
-    if(newBookForm.checkValidity()) {
-        addBook(title, author, pages, read);
+    if(!newBookForm.checkValidity()) {
+        if(title.validity.valueMissing) {
+            const errorEl = document.querySelector('#title + .error');
+            showError(errorEl, 'This field is required !');
+        }
+        if(author.validity.valueMissing) {
+            const errorEl = document.querySelector('#author + .error');
+            showError(errorEl, 'This field is required !');
+        }
+        if(pages.validity.valueMissing) {
+            const errorEl = document.querySelector('#pages + .error');
+            showError(errorEl, 'This field is required !');
+        } else if (pages.validity.rangeUnderflow) {
+            const errorEl = document.querySelector('#pages + .error');
+            showError(errorEl, 'Please enter a number greater than or equal to 1')
+        }
+    }
+    else {
+        addBook(title.value, author.value, pages.value, isRead);
         overlay.classList.toggle('active');
         newBookButton.classList.toggle('active');
-    } else {
-        newBookForm.reportValidity();
+        resetErrors();
     }
 });
+
+function showError(el, errorText) {
+    el.className = 'error active';
+    el.textContent = errorText;
+}
+
+function resetErrors() {
+    errorEls.forEach(error => {
+        error.className = 'error';
+        el.textContent = '';
+    })
+}
+
+inputs.forEach(input => {
+    input.addEventListener('input', () => {
+        const error = input.nextElementSibling;
+        if(input.validity.valid) {
+            error.classList.remove('active');
+            error.textContent = '';
+        } else {
+            error.className = 'error active';
+            error.textContent = input.validationMessage;
+        }
+    })
+})
 
 function updateData() {
     const myLibString = JSON.stringify(myLibrary);
@@ -184,3 +229,5 @@ if(!localStorage.getItem('mode')) {
         document.body.classList.remove('dark');
     }
 }
+
+overlay.classList.add('active');

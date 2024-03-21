@@ -49,6 +49,7 @@
     --text-color: #191919;
     --hover-accent: #c19b70;
     --hover-state-color: #F2AC5C;
+    --error-color: rgb(211, 46, 46);
 }
 
 body.dark {
@@ -58,6 +59,7 @@ body.dark {
     --text-color: #F8F8F8;
     --hover-accent: #664d2d;
     --hover-state-color: #422808;
+    --error-color: rgb(103, 24, 24);
     transition: 500ms;
 }
 
@@ -310,7 +312,7 @@ form {
     background-color: var(--background-color);
     padding: min(30px, 3%);
     width: min(500px, 90%);
-    gap: 20px;
+    gap: 2rem;
     border-radius: 20px;
     position: relative;
     overflow: hidden;
@@ -354,6 +356,7 @@ input::placeholder {
     grid-template-columns: 1fr 4fr;
     gap: 10px;
     align-items: center;
+    position: relative;
 }
 
 .newBookForm > div > input {
@@ -478,4 +481,34 @@ h2 {
 
 input[type="checkbox"]:hover, input[type="checkbox"]:focus {
     accent-color: var(--hover-accent);
+}
+
+.error {
+    background-color: var(--error-color);
+    width: auto;
+    position: absolute;
+    top: -2rem;
+    left: 35%;
+    padding: 0.25rem 0.5rem;
+    font-size: 1rem;
+    color: white;
+    border-radius: 0.5rem;
+    display: none;
+}
+
+.error::before {
+    content: '';
+    display: block;
+    width: 0px;
+    height: 0px;
+    border-left: 0.5rem solid transparent;
+    border-right: 0.5rem solid transparent;
+    border-top: 0.5rem solid var(--error-color);
+    position: absolute;
+    bottom: -0.5rem;
+    left: calc(50% - 0.25rem);
+}
+
+.error.active {
+    display: block;
 }
